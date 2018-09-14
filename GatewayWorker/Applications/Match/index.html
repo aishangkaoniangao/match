@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title></title>
+</head>
+<body>
+	<button id="game">开始游戏</button>
+	<button id="post">答题</button>
+
+<script type="text/javascript">
+var wsl= 'ws://ip:port';
+ws = new WebSocket(wsl);
+
+ws.onopen = function(){
+	console.log('启动成功');
+	//匹配
+	var msg = {
+		'type' : 'match',
+		'number' : 2,
+		'actid' : 'football',
+	}
+	msg = JSON.stringify(msg);
+	ws.send(msg);
+};  
+ws.onmessage = function(evt){
+	var data = toObj(evt.data);
+	console.log(data)
+	switch (data.type) {
+		case 'welcome':
+
+			console.log('启动成功');
+			break;
+	}
+};  
+ws.onclose = function(evt){
+	console.log('websocket服务连接被停止!');
+};  
+ws.onerror = function(evt){
+	console.log('websocket服务发生错误!');
+};
+function toObj(json){
+	return JSON.parse(json);
+}
+
+</script>
+</body>
+</html>
