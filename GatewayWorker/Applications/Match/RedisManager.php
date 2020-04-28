@@ -5,7 +5,6 @@ class RedisManager{
 	*
 	* @var string
 	*/
-	//const REDISHOSTNAME = "10.71.182.92";
 	const REDISHOSTNAME = "127.0.0.1";
 	/**
 	* port
